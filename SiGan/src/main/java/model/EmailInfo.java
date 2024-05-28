@@ -1,12 +1,12 @@
 package model;
 
-public class DataBaseInfo {
+public class EmailInfo {
 	private String recipient;
 	private String subject;
 	private String text;
 	private String targetTime;
 	
-	public DataBaseInfo(String recipient, String subject, String text, String targetTime) {
+	public EmailInfo(String recipient, String subject, String text, String targetTime) {
 		this.recipient = recipient;
 		this.subject = subject;
 		this.text = text;

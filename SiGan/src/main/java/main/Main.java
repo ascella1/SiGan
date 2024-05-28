@@ -1,44 +1,110 @@
 package main;
 
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import logic.EmailSender;
+import model.Post;
 
 public class Main {
+	//데이터베이스에서 postTable 을 가져오는 메소드 
+		//가져온 후 List에 추가한 후 return 해줌
+		public static List<Post> fetchEmailInfoFromDB() {
+			List<Post> posts = new ArrayList<>();
+			// DB 연결 정보
+			String jdbcUrl = "jdbc:mysql://localhost:3306/siganDatabase?useSSL=false";
+			String jdbcUser = "root";
+			String jdbcPassword = "chlwogns321@";
+
+			try (java.sql.Connection conn = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
+					Statement stmt = conn.createStatement();
+					ResultSet rs = stmt.executeQuery("SELECT recipient, subject, text, targetTime FROM POSTTABLE")) {
+
+				while (rs.next()) {
+					String recipient = rs.getString("recipient");
+					String subject = rs.getString("subject");
+					String text = rs.getString("text");
+					String targetTime = rs.getString("targetTime");
+					posts.add(new Post(recipient, subject, text, targetTime));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return posts;
+		}
+	
+	
+	
 	public static void main(String[] args) {
-        // 테스트를 위한 이메일 전송
-        String recipient = "chlwogns0108@gmail.com";
-        String subject = "시간 일치되어서 메일 전송";
-        String text = "시간 테스트 이메일 ";
-        
-        //테스트 시간
-        String targetTime = "2024-05-28 12:21:30";
-        
-        //EmailSender es = new EmailSender(); -> static 으로 했으므로 객체 생성 필요 없음
-        //EmailSender.sendEmail(recipient, subject, text);
-        
-        
-        //계속 현재 시간을 확인해야 하므로 while(1)
-        while(true) {
-        	//현재시간을 가져오는 메소드
-        	String currentTime =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").
-        			format(new Date());
-        	//현재시간의 문자열과 테스트시간의 문자열이 일치하는지 확인
-        	System.out.println(currentTime);
-        	if(currentTime.equals(targetTime)) {
-        		System.out.println("시간 일치");
-        		//시간 일치하므로 메일 전송
-        		EmailSender.sendEmail(recipient, subject, text);
-        	}
-        	try {
-        		//CPU 사용률을 낮추기 위한 .sleep
-        		Thread.sleep(1000);
-        	}catch(InterruptedException e){
-        		e.printStackTrace();
-        	}
-        }
-        
-        
-    }
+		/*
+		// 테스트를 위한 이메일 전송
+		String email = "chlwogns0108@gmail.com";
+		String subject = "시간 일치되어서 메일 전송";
+		String text = "시간 테스트 이메일 ";
+
+		// 테스트 시간
+		String targetTime = "2024-05-28 12:21:30";
+		*/
+		
+		//이메일 전송 여부 확인하기 위해 Boolean 으로 확인
+		Map<String, Boolean> sentFlags = new HashMap<>();
+		
+		// EmailSender es = new EmailSender(); -> static 으로 했으므로 객체 생성 필요 없음
+		// EmailSender.sendEmail(recipient, subject, text);
+		// 계속 현재 시간을 확인해야 하므로 while(1)
+		while (true) {
+			// 현재시간을 가져오는 메소드
+			String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+			System.out.println(currentTime);
+			
+			//postList 가져오는 해쉬
+			List<Post> posts = fetchEmailInfoFromDB();
+			
+			for(Post post : posts) {
+				String key = post.getRecipient() + post.getTargetTime();
+				//sentFlags가 키를 가지고 있지 않고(Boolean이면 키를가지지 않는듯.)
+				//현재 시간이 타겟타임과 일치할때 전송
+				if(!sentFlags.containsKey(key) && currentTime.equals(post.getTargetTime())) {
+					System.out.println("시간 일치하므로 이메일 전송.");
+					EmailSender.sendEmail(post.getRecipient(), post.getSubject(), post.getText());
+					//전송 후 중복전송을 방지하기 위해 Boolean 을 true 로 변경
+					sentFlags.put(key, true);
+				}
+			}
+			try {
+				// CPU 사용률을 낮추기 위한 .sleep
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			
+			/*
+			
+			// 현재시간의 문자열과 테스트시간의 문자열이 일치하는지 확인
+			if (currentTime.equals(targetTime)) {
+				System.out.println("시간 일치");
+				// 시간 일치하므로 메일 전송
+				EmailSender.sendEmail(email, subject, text);
+			}
+			try {
+				// CPU 사용률을 낮추기 위한 .sleep
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			*/
+		}
+
+	}
+
+	
 }
