@@ -5,3 +5,6 @@
 
 EmailSender.java 를 logic 패키지에 생성 완료
 EmailSender 구현 완료
+
+
+5/28 Main.java에 현재 시간 비교하고 이메일 보내는 로직 구현 완료, DataBaseInfo 모델 클래스 생성
