@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 import logic.EmailSender;
-import model.Post;
+import model.EmailInfo;
 
 public class Main {
 	//데이터베이스에서 postTable 을 가져오는 메소드 
 		//가져온 후 List에 추가한 후 return 해줌
-		public static List<Post> fetchEmailInfoFromDB() {
-			List<Post> posts = new ArrayList<>();
+		public static List<EmailInfo> fetchEmailInfoFromDB() {
+			List<EmailInfo> posts = new ArrayList<>();
 			// DB 연결 정보
 			String jdbcUrl = "jdbc:mysql://localhost:3306/siganDatabase?useSSL=false";
 			String jdbcUser = "root";
@@ -25,14 +25,17 @@ public class Main {
 
 			try (java.sql.Connection conn = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
 					Statement stmt = conn.createStatement();
-					ResultSet rs = stmt.executeQuery("SELECT recipient, subject, text, targetTime FROM POSTTABLE")) {
+					//()안의 구문을 실행 한 후 rs 객체에 저장
+					//user 구현 후 where=""절 추가해야할듯?
+					ResultSet rs = stmt.executeQuery("SELECT postId, recipient, subject, text, targetTime FROM POSTTABLE")) {
 
 				while (rs.next()) {
+					int postId = rs.getInt("postId");
 					String recipient = rs.getString("recipient");
 					String subject = rs.getString("subject");
 					String text = rs.getString("text");
 					String targetTime = rs.getString("targetTime");
-					posts.add(new Post(recipient, subject, text, targetTime));
+					posts.add(new EmailInfo(postId, recipient, subject, text, targetTime));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -62,19 +65,22 @@ public class Main {
 		// 계속 현재 시간을 확인해야 하므로 while(1)
 		while (true) {
 			// 현재시간을 가져오는 메소드
+			//ss는 간단히 테스트를 위해 추가한 것으로 추후 삭제 
+			//sql에서 targetTime의 형태를 yyyy-mm-dd hh:mm 으로 수정
 			String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-			System.out.println(currentTime);
+			//System.out.println(currentTime);
 			
 			//postList 가져오는 해쉬
-			List<Post> posts = fetchEmailInfoFromDB();
+			List<EmailInfo> emailInfos = fetchEmailInfoFromDB();
 			
-			for(Post post : posts) {
-				String key = post.getRecipient() + post.getTargetTime();
+			for(EmailInfo emailInfo : emailInfos) {
+				String key = emailInfo.getRecipient() + emailInfo.getTargetTime();
 				//sentFlags가 키를 가지고 있지 않고(Boolean이면 키를가지지 않는듯.)
 				//현재 시간이 타겟타임과 일치할때 전송
-				if(!sentFlags.containsKey(key) && currentTime.equals(post.getTargetTime())) {
+				if(!sentFlags.containsKey(key) && currentTime.equals(emailInfo.getTargetTime())) {
 					System.out.println("시간 일치하므로 이메일 전송.");
-					EmailSender.sendEmail(post.getRecipient(), post.getSubject(), post.getText());
+					System.out.println("Recipient : "+ emailInfo.getRecipient() + " targetTime : " + emailInfo.getTargetTime());
+					EmailSender.sendEmail(emailInfo.getPostId(), emailInfo.getRecipient(), emailInfo.getSubject(), emailInfo.getText());
 					//전송 후 중복전송을 방지하기 위해 Boolean 을 true 로 변경
 					sentFlags.put(key, true);
 				}
@@ -87,21 +93,6 @@ public class Main {
 			}
 			
 			
-			/*
-			
-			// 현재시간의 문자열과 테스트시간의 문자열이 일치하는지 확인
-			if (currentTime.equals(targetTime)) {
-				System.out.println("시간 일치");
-				// 시간 일치하므로 메일 전송
-				EmailSender.sendEmail(email, subject, text);
-			}
-			try {
-				// CPU 사용률을 낮추기 위한 .sleep
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			*/
 		}
 
 	}

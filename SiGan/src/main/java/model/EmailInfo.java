@@ -1,16 +1,23 @@
 package model;
 
 public class EmailInfo {
-	private String recipient;
-	private String subject;
-	private String text;
-	private String targetTime;
 	
-	public EmailInfo(String recipient, String subject, String text, String targetTime) {
-		this.recipient = recipient;
-		this.subject = subject;
-		this.text = text;
-		this.targetTime = targetTime;
+	private int postId;
+	private String recipient;
+    private String subject;
+    private String text;
+    private String targetTime;
+
+    public EmailInfo(int postId, String recipient, String subject, String text, String targetTime) {
+        this.postId = postId;
+        this.recipient = recipient;
+        this.subject = subject;
+        this.text = text;
+        this.targetTime = targetTime;
+    }
+   
+    public int getPostId() {
+		return postId;
 	}
 
 	public String getRecipient() {
@@ -28,5 +35,5 @@ public class EmailInfo {
 	public String getTargetTime() {
 		return targetTime;
 	}
-
+    
 }
