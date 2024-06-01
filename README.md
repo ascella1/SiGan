@@ -19,3 +19,5 @@ EmailSender 구현 완료
 USER정보를 관리할 필요가 없다고 판단, userTable을 삭제하고 postTable 로 통일
 postTable의 모델클래스인 EmailInfo.java 파일 생성
 모든 기능 정상 작동 확인 -> 추후 시간 형태를 yyyy-MM-dd hh:mm 으로 수정해야 할듯.
+
+....
