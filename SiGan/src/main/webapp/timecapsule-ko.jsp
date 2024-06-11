@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SiGan</title>
-<link href="css/costom.css" rel="stylesheet" type="text/css">
+<title>타임 캡슐</title>
+<link href="TimecapsuleCss.css" rel="stylesheet" type="text/css">
 <script>
 	function nowTime(){
 		let today = new Date();
@@ -32,33 +32,53 @@
 </script>
 </head>
 <body>
+	<%
+		String userEmail = null;
+		if(session.getAttribute("userEmail") != null){
+			userEmail = (String)session.getAttribute("userEmail");
+		}
+	%>
 	
 	<container class='sort'>
         <div class='sort-div'>
             <div id='title'>
-               	SiGan
+               	Time Capsule
             </div>
             <hr>
             <div id='nowTime'>		
  				...
             </div>
             <a href='write.jsp'>   
-                <div class='writeButton'>
-                    작성하기
+                <div class='select'>
+                    새로 작성하기
                 </div>
             </a>
-            <div>
-            	<details>
-            		<summary>어떻게 하는거에요?</summary>
-            		<p>
-            			<li>라라라라1</li>
-            			<li>라라라라2</li>
-            			<li>라라라라3</li>
-            		</p>
-            	</details>
-            </div>
+            <a href='#'>
+                <div class='select'>
+                    남은 시간 확인하기
+                </div>
+            </a>
+            <%
+            	if(userEmail == null){
+            %>
+            <a href="login.jsp">
+                <div style="margin-top:2px">
+                   로그인 및 회원가입
+                </div>
+            </a>
+            <%
+            	}else{
+            %>
+            <a href="logout.jsp">
+                <div style="margin-top:2px">
+                   로그아웃
+                </div>
+            </a>
+            <%
+            	}
+            %>
             <div style="margin-top:30px; font-size:10px;">
-                @2024 Made By Choi
+                @2023 Made By Choi
             </div>
         </div>
     </container>
