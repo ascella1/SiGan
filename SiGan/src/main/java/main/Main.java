@@ -14,7 +14,7 @@ import logic.EmailSender;
 import model.EmailInfo;
 
 public class Main {
-	//데이터베이스에서 postTable 을 가져오는 메소드 
+		//데이터베이스에서 이메일 정보를 가져오는 메소드
 		//가져온 후 List에 추가한 후 return 해줌
 		public static List<EmailInfo> fetchEmailInfoFromDB() {
 			List<EmailInfo> posts = new ArrayList<>();
@@ -23,6 +23,7 @@ public class Main {
 			String jdbcUser = "root";
 			String jdbcPassword = "chlwogns321@";
 
+			//DriverManager 가 아닌 DataSource 를 사용하여 커넥션 풀로 변경.
 			try (java.sql.Connection conn = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
 					Statement stmt = conn.createStatement();
 					//()안의 구문을 실행 한 후 rs 객체에 저장
