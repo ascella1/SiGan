@@ -1,14 +1,9 @@
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/* @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); */
 @import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
-*{
+/* *{
 	font-family : "Nanum Gothic";
 	
-}
-h1{
-	font-family : "Hanna"; 
-}
-
-/* 기본 div 설정(배경 및 div 태그의 정렬 등*/
+} *//* 기본 div 설정(배경 및 div 태그의 정렬 등*/
 
 .sort{
     margin:0 auto;
@@ -24,14 +19,21 @@ h1{
 div{
     padding:2px;
     margin:3px;
+    
 }
 .sort-div{
+    /* 원으로 만드는 속성
+    border:2px solid white; 
+    padding:25px;
+    padding-top:90px;
+    padding-bottom:90px;
+    border-radius:50%;*/
     margin-left:auto;
     margin-right:auto;  
 }
 
 
-/*각 홈페이지들의 타이틀격("SiGan","새로 작성하기" 등) 을 설정해줌*/
+/*각 홈페이지들의 타이틀격("timecapsule"," 로그인화면" 등) 을 설정해줌*/
 #title{
     font-size:2.9em;
     /*margin-bottom:-7px;*/
@@ -41,7 +43,6 @@ div{
     font-size:1.7em;
     /*font-weight:600;*/
 }
-
 /* 작성하기 버튼 */
 .writeButton{
     display:inline-block;
@@ -56,40 +57,36 @@ div{
     background-color:white;
     color:black;        
 }
+/*작성완료 버튼 (writeButton과 똑같은 형태로 함)*/
+#btn{
+	background-color:black;
+	border:2px solid white;
+	color:white;
+	margin:10px;
+}
+#btn:hover{
+	background-color:white;
+	color:black;
+}
 
 a{
     color:#fff;
     text-decoration:none;
 }
-/* #setting{
-    width:70vw;
-    height:80vh;
-    border:2px solid #fff;
-    margin:0 auto;
-} */
 hr{
     width:87%;
     border:2px solid #558ed3;
 }
-/* #howto{
-    font-size:20px;
-    font-weight:bold;
-}
-.howto2{
-    margin-left:15px;
-    margin-right:15px;
-    letter-spacing:1px;
-} */
 details{
     margin:10px;
-    font-size:14px;
 }
 
 form{
     margin:0 auto;
     margin-top:10px;
     margin-bottom:10px;
-    width:290px;
+    width:330px;
+    
 }
 fieldset{
     padding-left:7px;
@@ -104,29 +101,10 @@ fieldset{
 }
 textarea{
     margin:0 auto;
+    width:320px;
     background-color:black;
     color:white;
     border:2px solid white;
     resize:none;
+    border-radius:5px;
 }	
-/*버튼 디자인 (div와 똑같은 형태로 함)*/
-#btn{
-	background-color:black;
-	border:2px solid white;
-	color:white;
-	margin:10px;
-}
-#btn:hover{
-	background-color:white;
-	color:black;
-}
-
-input[type=email]{
-    width:90%;
- 	height:32px;
- 	border:0px;
- 	border-radius:7px;
- 	text-align:center;
- 	background-color:rgb(233,233,233);
-}
-

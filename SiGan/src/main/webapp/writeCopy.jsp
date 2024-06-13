@@ -15,18 +15,27 @@
         <div class='sort-div'>
             <div id="title">새로 작성하기</div>
             <hr>
-            <form method="post" action="#">
+            <form method="post" action="EmailServlet">
             	<div>
-	            	<input type="datetime-local" placeholder="읽을 날짜를 설정해주세요" name="targetTime" required pattern="yyyy/mm/dd/hh/mm/">
+            		<a> 읽을 날짜 지정</a>
+            		<br>
+	            	<input type="datetime-local" style="border-radius:5px;"
+	            	placeholder="읽을 날짜를 설정해주세요" name="targetTime" required pattern="yyyy/mm/dd/hh/mm/">
 	            </div>
 	            <div>
-	            	<textarea rows="5" cols="30" placeholder="글 제목" name="subject" maxlength="255"></textarea>
+	            	<a>전달받을 이메일 설정</a>
+	            	<textarea rows="1" cols="30" placeholder="전달받을 이메일을 입력해주세요" name="recipient" maxlength="255"></textarea>
 	            </div>
 	            <div>
-	            	<textarea rows="10" cols="30" placeholder="글 내용" name="text" maxlength="5024"></textarea>
+	            	<a>글 제목 입력</a>
+	            	<textarea rows="2" cols="30" placeholder="글 제목을 입력해주세요" name="subject" maxlength="255"></textarea>
 	            </div>
 	            <div>
-					<input type="submit" class="writeButton" value="작성 완료 !">
+	            	<a>글 내용 입력</a>
+	            	<textarea rows="15" cols="30" placeholder="글 내용을 입력해주세요(5024자 이내)" name="text" maxlength="5024"></textarea>
+	            </div>
+	            <div>
+					<input id="btn" type="submit" class="writeButton" value="작성 완료 !">
 				</div>
             </form>           
         </div>
