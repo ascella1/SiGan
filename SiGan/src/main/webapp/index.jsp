@@ -7,7 +7,7 @@
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>SiGan</title>
-<link href="css/costom.css" rel="stylesheet" type="text/css">
+<link href="css/custom.css" rel="stylesheet" type="text/css">
 <script>
 	function nowTime(){
 		let today = new Date();

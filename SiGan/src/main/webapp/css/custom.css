@@ -26,18 +26,12 @@ div{
     margin:3px;
 }
 .sort-div{
-    /* 원으로 만드는 속성
-    border:2px solid white; 
-    padding:25px;
-    padding-top:90px;
-    padding-bottom:90px;
-    border-radius:50%;*/
     margin-left:auto;
     margin-right:auto;  
 }
 
 
-/*각 홈페이지들의 타이틀격("timecapsule"," 로그인화면" 등) 을 설정해줌*/
+/*각 홈페이지들의 타이틀격("SiGan","새로 작성하기" 등) 을 설정해줌*/
 #title{
     font-size:2.9em;
     /*margin-bottom:-7px;*/
