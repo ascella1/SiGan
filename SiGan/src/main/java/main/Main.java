@@ -10,10 +10,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import container.ContainerContext;
 import logic.EmailSender;
 import model.EmailInfo;
+import model.SiGanDAO;
 
 public class Main {
+		//데이터베이스에 이메일을 추가해주는 메소드
+		//public static 
+		/*
+	
 		//데이터베이스에서 이메일 정보를 가져오는 메소드
 		//가져온 후 List에 추가한 후 return 해줌
 		public static List<EmailInfo> fetchEmailInfoFromDB() {
@@ -31,12 +39,12 @@ public class Main {
 					ResultSet rs = stmt.executeQuery("SELECT postId, recipient, subject, text, targetTime FROM POSTTABLE")) {
 
 				while (rs.next()) {
-					int postId = rs.getInt("postId");
+					//int postId = rs.getInt("postId");
 					String recipient = rs.getString("recipient");
 					String subject = rs.getString("subject");
 					String text = rs.getString("text");
 					String targetTime = rs.getString("targetTime");
-					posts.add(new EmailInfo(postId, recipient, subject, text, targetTime));
+					posts.add(new EmailInfo( recipient, subject, text, targetTime));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -45,21 +53,16 @@ public class Main {
 			return posts;
 		}
 	
-	
+	*/
 	
 	public static void main(String[] args) {
-		/*
-		// 테스트를 위한 이메일 전송
-		String email = "chlwogns0108@gmail.com";
-		String subject = "시간 일치되어서 메일 전송";
-		String text = "시간 테스트 이메일 ";
-
-		// 테스트 시간
-		String targetTime = "2024-05-28 12:21:30";
-		*/
+		
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ContainerContext.class);
+        SiGanDAO dao = context.getBean(SiGanDAO.class);
 		
 		//이메일 전송 여부 확인하기 위해 Boolean 으로 확인
 		Map<String, Boolean> sentFlags = new HashMap<>();
+		
 		
 		// EmailSender es = new EmailSender(); -> static 으로 했으므로 객체 생성 필요 없음
 		// EmailSender.sendEmail(recipient, subject, text);
@@ -69,10 +72,13 @@ public class Main {
 			//ss는 간단히 테스트를 위해 추가한 것으로 추후 삭제 
 			//sql에서 targetTime의 형태를 yyyy-mm-dd hh:mm 으로 수정
 			String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-			//System.out.println(currentTime);
+			System.out.println(currentTime);
+			
+			
 			
 			//postList 가져오는 해쉬
-			List<EmailInfo> emailInfos = fetchEmailInfoFromDB();
+			//DAO 화 한 후 fectEmail~()이 아닌 DAO.fetchEmail~()로 수정할 거 ㅅ
+			List<EmailInfo> emailInfos = dao.selectAllEmails();
 			
 			for(EmailInfo emailInfo : emailInfos) {
 				String key = emailInfo.getRecipient() + emailInfo.getTargetTime();

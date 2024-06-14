@@ -9,7 +9,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailSender {
-	public static void sendEmail(int userId, String recipient, String subject, String text) {
+	public static void sendEmail(int postId, String recipient, String subject, String text) {
         // SMTP 서버 정보 설정
         String host = "smtp.gmail.com";
         String from = "chlwogns0108@gmail.com";

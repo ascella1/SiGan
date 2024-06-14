@@ -8,13 +8,13 @@ public class EmailInfo {
     private String text;
     private String targetTime;
 
-    public EmailInfo(int postId, String recipient, String subject, String text, String targetTime) {
-        this.postId = postId;
+    public EmailInfo(String recipient, String subject, String text, String targetTime) {
         this.recipient = recipient;
         this.subject = subject;
         this.text = text;
         this.targetTime = targetTime;
     }
+    
    
     public int getPostId() {
 		return postId;
@@ -35,5 +35,25 @@ public class EmailInfo {
 	public String getTargetTime() {
 		return targetTime;
 	}
-    
+	public void setPostId(int postId) {
+		this.postId = postId;
+	}
+
+	public void setRecipient(String recipient) {
+		this.recipient = recipient;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public void setTargetTime(String targetTime) {
+		this.targetTime = targetTime;
+	}
+	
+	
 }

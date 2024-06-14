@@ -22,13 +22,15 @@
 		</dependency>
 		<!-- Activation Framework (required for JavaMail) -->
 		<dependency>
-			<groupId>com.sun.activation</groupId>
+			<groupId>
+				com.sun.activation</groupId>
 			<artifactId>javax.activation</artifactId>
 			<version>1.2.0</version>
 		</dependency>
 		<!-- JavaMail implementation -->
 		<dependency>
-			<groupId>com.sun.mail</groupId>
+			<groupId>
+				com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
 		</dependency>
@@ -36,10 +38,11 @@
 
 		<!--스프링 설정-->
 		<dependency>
-			<groupId>org.springframework</groupId>
+			<groupId>
+				org.springframework</groupId>
 			<artifactId>
 				spring-jdbc</artifactId>
-			<version>5.0.2.RELEASE</version>
+			<version>5.3.20</version>
 		</dependency>
 
 		<dependency>
@@ -47,17 +50,61 @@
 				org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>
-				5.2.19.RELEASE</version>
+				5.3.20</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>
+				org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.3.20</version>
+		</dependency>
+
+		<dependency>
+			<groupId>
+				org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>5.3.20</version>
+		</dependency>
+
+		<!-- Servlet API -->
+    <dependency>
+        <groupId>
+				javax.servlet</groupId>
+        <artifactId>
+				javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+		</dependency>
+
+		<!-- JSP API -->
+    <dependency>
+        <groupId>
+				javax.servlet.jsp</groupId>
+        <artifactId>javax.servlet.jsp-api</artifactId>
+        <version>
+				2.3.3</version>
+        <scope>provided</scope>
+		</dependency>
+
+		<!-- JSTL -->
+    <dependency>
+        <groupId>
+				javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
 		</dependency>
 
 
 		<!--톰캣 설정-->
+		<!--
+		https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jdbc -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
-			<artifactId>
-				tomcat-jdbc</artifactId>
-			<version>8.5.27</version>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>9.0.71</version>
 		</dependency>
+
 
 		<!--DB 설정-->
 		<dependency>
