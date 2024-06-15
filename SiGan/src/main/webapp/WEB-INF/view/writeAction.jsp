@@ -21,6 +21,13 @@
 	String subject = request.getParameter("subject");
 	String text = request.getParameter("text");
 	String targetTime = request.getParameter("targetTime");
+	targetTime = targetTime.replace("T", " ") + ":01";
+	/*
+	String userEmail = null;
+			String bbsReadDate = request.getParameter("bbsReadDate");//읽을날짜를 가져와서 
+			//bbsReadDate에 저장하는 것
+			String date = bbsReadDate.replace("T", " ");//T가 같이 저장되는것을 없애는 것
+	*/
 
 	// 데이터베이스에 저장할 EmailInfo 객체 생성
 	EmailInfo emailInfo = new EmailInfo(recipient, subject, text, targetTime);

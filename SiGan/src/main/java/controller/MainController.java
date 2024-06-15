@@ -10,9 +10,9 @@ public class MainController {
         return "index"; 
     }
     
-    @RequestMapping(value = {"/writeCopy"})
-    public String writeCopy() throws Exception{
-        return "writeCopy"; 
+    @RequestMapping(value = {"/write"})
+    public String write() throws Exception{
+        return "write"; 
     }
     @RequestMapping("/writeAction")
     public String writeAction() throws Exception{

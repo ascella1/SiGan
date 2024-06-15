@@ -13,10 +13,11 @@ import java.util.Map;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import container.ContainerContext;
-import logic.EmailSender;
 import model.EmailInfo;
+import model.EmailSender;
 import model.SiGanDAO;
 
+//로직 확인하기 위한 테스트 파일
 public class Main {
 		//데이터베이스에 이메일을 추가해주는 메소드
 		//public static 

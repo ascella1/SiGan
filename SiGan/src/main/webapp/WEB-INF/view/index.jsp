@@ -46,7 +46,7 @@
             <div id='nowTime'>      
                 ...
             </div>
-            <a href="${pageContext.request.contextPath}/writeCopy">
+            <a href="${pageContext.request.contextPath}/write">
                 <div class='writeButton'>
                     작성하기
                 </div>
