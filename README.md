@@ -3,9 +3,7 @@
 ## 일별 작업 내용
 - 5/27 Maven 프로젝트 생성 (Eclipse 에서 Dynamic Web Project 생성)
 그 후 pom.xml 의 dependency 를 통해 스프링, 자바메일 전송, 톰켓 의존성 주입 완료
-
-EmailSender.java 를 logic 패키지에 생성 완료
-EmailSender 구현 완료
+EmailSender.java 를 logic 패키지에 생성 완료, EmailSender 구현 완료
 
 
 - 5/28 
@@ -38,9 +36,9 @@ JDBC관리를 connection.DriverManager가 아닌 DataSource 를 사용해야 함
 6/13 write.jsp 의 디자인( writeCopy.jsp 에 작성) 구현 -> cols 속성을 변경하면 가운데 정렬 안되는 문제 발견
 추가적으로 form 태그 action 수정, java코드에서 jsp 로 데이터가져오는법 알아야 할듯
 
--6/14 ~ 6/15
+- 6/14 ~ 6/15
 Spring 형태로 수정하는 작업 완료. (Controller 의 Bean 객체를 생성하는것을 까먹지 말것..)
 Main.java 클래스를 run() 메소드로 새로 만들어 index.jsp 의 백그라운드에 계속 실행되도록 변경하기 전 작업임
 
--6/15 
+- 6/15 
 SiGan 구현 완료. 모든 테스트 후  정상 작동 확인
