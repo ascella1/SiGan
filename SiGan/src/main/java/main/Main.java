@@ -19,42 +19,6 @@ import model.SiGanDAO;
 
 //로직 확인하기 위한 테스트 파일
 public class Main {
-		//데이터베이스에 이메일을 추가해주는 메소드
-		//public static 
-		/*
-	
-		//데이터베이스에서 이메일 정보를 가져오는 메소드
-		//가져온 후 List에 추가한 후 return 해줌
-		public static List<EmailInfo> fetchEmailInfoFromDB() {
-			List<EmailInfo> posts = new ArrayList<>();
-			// DB 연결 정보
-			String jdbcUrl = "jdbc:mysql://localhost:3306/siganDatabase?useSSL=false";
-			String jdbcUser = "root";
-			String jdbcPassword = "chlwogns321@";
-
-			//DriverManager 가 아닌 DataSource 를 사용하여 커넥션 풀로 변경.
-			try (java.sql.Connection conn = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
-					Statement stmt = conn.createStatement();
-					//()안의 구문을 실행 한 후 rs 객체에 저장
-					//user 구현 후 where=""절 추가해야할듯?
-					ResultSet rs = stmt.executeQuery("SELECT postId, recipient, subject, text, targetTime FROM POSTTABLE")) {
-
-				while (rs.next()) {
-					//int postId = rs.getInt("postId");
-					String recipient = rs.getString("recipient");
-					String subject = rs.getString("subject");
-					String text = rs.getString("text");
-					String targetTime = rs.getString("targetTime");
-					posts.add(new EmailInfo( recipient, subject, text, targetTime));
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			return posts;
-		}
-	
-	*/
 	
 	public static void main(String[] args) {
 		
